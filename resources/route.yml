@@ -39,9 +39,6 @@
       "spec": {
         "to": {
           "name": "hello-openshift-service"
-        },
-        "tls": {
-          "termination": "edge"
         }
       }
     },

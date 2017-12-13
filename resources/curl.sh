@@ -1,9 +1,8 @@
-KL_TOKEN=<TOKEN>
+KL_TOKEN="Bearer <ACCESS_TOKEN>"
 OPENSHIFT_DOMAIN=ibuziuk-che.8a09.starter-us-east-2.openshiftapps.com
 
-URL=https://hello-openshift-route-${OPENSHIFT_DOMAIN}/
+URL=http://hello-openshift-route-${OPENSHIFT_DOMAIN}/
 while true; do
-    curl --header "authorization: Bearer ${KL_TOKEN}" \
-       -s -o /dev/null -w "%{http_code}" ${URL}
+    curl -s -o /dev/null -w "%{http_code}" ${URL}
     echo
 done

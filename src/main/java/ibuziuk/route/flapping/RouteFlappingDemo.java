@@ -20,11 +20,16 @@ public class RouteFlappingDemo {
     // https://stackoverflow.com/questions/2793150/using-java-net-urlconnection-to-fire-and-handle-http-requests
 
     private static final String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36";
-    private static final String GET_URL = "https://hello-openshift-route-ibuziuk-che.8a09.starter-us-east-2.openshiftapps.com/";
+    private static final String GET_URL = "http://hello-openshift-route-ibuziuk-che.8a09.starter-us-east-2.openshiftapps.com/";
     private static final String KL_TOKEN = "Bearer <token>";
 
     public static void main(String[] args)
         throws IOException, KeyManagementException, NoSuchAlgorithmException, InterruptedException {
+        System.setProperty("http.proxyHost", "127.0.0.1");
+//        System.setProperty("https.proxyHost", "127.0.0.1");
+        System.setProperty("http.proxyPort", "8888");
+//        System.setProperty("https.proxyPortcd", "8888");
+        System.setProperty("http.keepAlive","false");
         while (true) {
             sendGET();
             Thread.sleep(1000);
@@ -36,11 +41,12 @@ public class RouteFlappingDemo {
         throws IOException, NoSuchAlgorithmException, KeyManagementException {
 
       URL obj = new URL(GET_URL);
-      HttpsURLConnection con = (HttpsURLConnection) obj.openConnection();
+      HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 //      con.setRequestProperty("Authorization", KL_TOKEN);
       con.setRequestProperty("User-Agent", USER_AGENT);
       con.setRequestMethod("GET");
       con.setRequestProperty("Accept", "application/json");
+      con.setRequestProperty("Connection", "close");
       con.setUseCaches(false);
       con.setDefaultUseCaches(false);
       con.setDoOutput(true);
