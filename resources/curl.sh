@@ -1,5 +1,5 @@
 KL_TOKEN="Bearer <ACCESS_TOKEN>"
-OPENSHIFT_DOMAIN=ibuziuk-che.8a09.starter-us-east-2.openshiftapps.com
+OPENSHIFT_DOMAIN=osio-ci-ee3-preview.b542.starter-us-east-2a.openshiftapps.com
 
 URL=http://hello-openshift-route-${OPENSHIFT_DOMAIN}/
 while true; do
